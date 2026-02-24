@@ -6,8 +6,12 @@ terraform{
         }
     }
 
-}
+    backend "s3"{
+        bucket = "myapp789bucket"
+        key = "demo"
+        dynamodb_table = "testing"
+        region = "us-east-1"
 
-provider "aws"{
-    region = var.region
+    }
+
 }
