@@ -1,11 +1,21 @@
-- name: To install and enable nginx
+- name: To enable nginx conditionally
   hosts: web
   become: yes
-  tasks:
+  tasks: 
   - name: To install nginx
     package:
      name: nginx
      state: present
+  - name: To starte nginx
+    service:
+     name: nginx
+     state: started
+  - name: To change config vars_files
+    copy:
+     content: "hello"
+     dest: "/home/ece-user"
+    notify: restart nginx
+  handlers:
   - name: To enable nginx
     service:
      name: nginx
