@@ -18,12 +18,6 @@ resource "aws_security_group" "allow_my_ip"{
         cidr_blocks = ["0.0.0.0/0"]
         ipv6_cidr_blocks = ["::/0"]
     }
-    ingress{
-        from_port = 22
-        to_port = 22
-        protocol = "tcp"
-        ipv6_cidr_blocks = ["::/0"]
-    }
 }
 
 resource "aws_security_group_rule" "sgrule"{
@@ -31,8 +25,8 @@ resource "aws_security_group_rule" "sgrule"{
     from_port = 22
     to_port = 22
     protocol = "tcp"
-    cidr_blocks = ["3.87.88.135"]
-    aws_security_group_id = aws_security_group.allow_my_ip.id
+    cidr_blocks = ["3.87.88.135/32"]
+    security_group_id = aws_security_group.allow_my_ip.id
 }
 
 
@@ -56,21 +50,15 @@ resource "aws_security_group" "allow_bastion"{
         cidr_blocks = ["0.0.0.0/0"]
         ipv6_cidr_blocks = ["::/0"]
     }
-    ingress{
-        from_port = 22
-        to_port = 22
-        protocol = "tcp"
-        ipv6_cidr_blocks = ["::/0"]
-    }
 }
 
 resource "aws_security_group_rule" "sgrule1"{
-    type = ingress
+    type = "ingress"
     from_port = 22
     to_port = 22
     protocol = "tcp"
     source_security_group_id = aws_security_group.allow_my_ip.id
-    aws_security_group_id = aws_security_group.allow_bastion.id
+    security_group_id = aws_security_group.allow_bastion.id
 }
 
 
@@ -120,6 +108,7 @@ resource "aws_eip" "ep"{
 resource "aws_nat_gateway" "nat"{
     allocation_id = aws_eip.ep.id
     subnet_id = aws_subnet.public.id
+    depends_on = aws_internet_gateway.igw
 }
 
 resource "aws_route_table" "rt1"{
