@@ -35,8 +35,15 @@ resource "aws_vpc" "main"{
 resource "aws_subnet" "public"{
     vpc_id = aws_vpc.main.id
     availability_zone = "us-east-1a"
-    cidr_block = "10.0.0.0/24"
+    cidr_block = "10.0.1.0/24"
     map_public_ip_on_launch = true
+}
+
+resource "aws_subnet" "private"{
+    vpc_id = aws_vpc.main.id
+    availability_zone = "us-east-1a"
+    cidr_block = "10.0.2.0/24"
+    map_public_ip_on_launch = false
 }
 
 resource "aws_internet_gateway" "igw"{
@@ -57,4 +64,29 @@ resource "aws_route" "r"{
 resource "aws_route_table_association" "rta"{
     route_table_id = aws_route_table.rt.id
     subnet_id = aws_subnet.public.id
+}
+
+resource "aws_eip" "ep"{
+    domain = vpc
+}
+
+resource "aws_nat_gateway" "nat"{
+    allocation_id = aws_eip.ep
+    subnet_id = aws_subnet.public.id
+}
+
+resource "aws_route_table" "rt1"{
+    vpc_id = aws_vpc.main.id
+}
+
+resource "aws_route" "r"{
+    route_table_id = aws_route_table.rt1.id
+    nat_gateway_id = aws_nat_gateway.nat.id
+    destination_cidr_block = "0.0.0.0/0"
+
+}
+
+resource "aws_route_table_association" "rta"{
+    route_table_id = aws_route_table.rt1.id
+    subnet_id = aws_subnet.private.id
 }
