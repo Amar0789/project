@@ -71,7 +71,7 @@ resource "aws_eip" "ep"{
 }
 
 resource "aws_nat_gateway" "nat"{
-    allocation_id = aws_eip.ep
+    allocation_id = aws_eip.ep.id
     subnet_id = aws_subnet.public.id
 }
 
