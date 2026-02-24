@@ -79,14 +79,14 @@ resource "aws_route_table" "rt1"{
     vpc_id = aws_vpc.main.id
 }
 
-resource "aws_route" "r"{
+resource "aws_route" "r1"{
     route_table_id = aws_route_table.rt1.id
     nat_gateway_id = aws_nat_gateway.nat.id
     destination_cidr_block = "0.0.0.0/0"
 
 }
 
-resource "aws_route_table_association" "rta"{
+resource "aws_route_table_association" "rta1"{
     route_table_id = aws_route_table.rt1.id
     subnet_id = aws_subnet.private.id
 }
