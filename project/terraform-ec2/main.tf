@@ -52,9 +52,17 @@ resource "aws_security_group" "allow_bastion"{
         from_port = 22
         to_port = 22
         protocol = "tcp"
-        source_security_group_id = aws_security_group.allow_my_ip.id
         ipv6_cidr_blocks = ["::/0"]
     }
+}
+
+resource "aws_security_group_rule" "sgrule"{
+    type = ingress
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    source_security_group_id = aws_security_group.allow_my_ip.id
+    aws_security_group_id = aws_security_group.allow_bastion.id
 }
 
 
