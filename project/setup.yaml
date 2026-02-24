@@ -16,7 +16,7 @@
      dest: "/home/ece-user"
     notify: restart nginx
   handlers:
-  - name: To enable nginx
+  - name: restart nginx
     service:
      name: nginx
      state: started
