@@ -1,15 +1,15 @@
 resource "aws_instance" "demo"{
     ami = var.ami_id
     instance_type = var.instance_type
-    vpc_security_group_ids = [aws_security_group.allow_all.id]
+    vpc_security_group_ids = [aws_security_group.allow_my_ip.id]
     subnet_id = aws_subnet.public.id
 
     tags = {
-        Name = "demo_instance"
+        Name = "Bastion"
     }
 }
 
-resource "aws_security_group" "allow_all"{
+resource "aws_security_group" "allow_my_ip"{
     vpc_id = aws_vpc.main.id
     egress{
         from_port = 0
@@ -22,10 +22,41 @@ resource "aws_security_group" "allow_all"{
         from_port = 22
         to_port = 22
         protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
+        cidr_blocks = "3.87.88.135"
         ipv6_cidr_blocks = ["::/0"]
     }
 }
+
+
+resource "aws_instance" "demo1"{
+    ami = var.ami_id
+    instance_type = var.instance_type
+    vpc_security_group_ids = [aws_security_group.allow_bastion.id]
+    subnet_id = aws_subnet.private.id
+
+    tags = {
+        Name = "Privateec2"
+    }
+}
+
+resource "aws_security_group" "allow_bastion"{
+    vpc_id = aws_vpc.main.id
+    egress{
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
+    }
+    ingress{
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        source_security_gourp_id = aws_security_group.allow_my_ip.id
+        ipv6_cidr_blocks = ["::/0"]
+    }
+}
+
 
 resource "aws_vpc" "main"{
     cidr_block = "10.0.0.0/16"
