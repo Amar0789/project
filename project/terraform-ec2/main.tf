@@ -67,7 +67,7 @@ resource "aws_route_table_association" "rta"{
 }
 
 resource "aws_eip" "ep"{
-    domain = vpc
+    domain = "vpc"
 }
 
 resource "aws_nat_gateway" "nat"{
