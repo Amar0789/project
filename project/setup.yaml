@@ -12,7 +12,6 @@
       loop:
       - nginx
       - git
-      - curl
 
     - name: Start nginx
       service:
