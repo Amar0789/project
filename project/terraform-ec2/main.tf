@@ -22,7 +22,7 @@ resource "aws_security_group" "allow_my_ip"{
         from_port = 22
         to_port = 22
         protocol = "tcp"
-        cidr_block = "3.87.88.135"
+        cidr_block = 3.87.88.135
         ipv6_cidr_blocks = ["::/0"]
     }
 }
