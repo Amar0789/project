@@ -11,7 +11,6 @@ terraform{
         key = "demo"
         dynamodb_table = "testing"
         region = "us-east-1"
-
     }
 
 }
