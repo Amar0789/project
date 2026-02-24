@@ -4,11 +4,16 @@
 
   tasks:
 
-    - name: Install nginx
+    - name: Install multiple packages
       package:
-        name: nginx
+        name: "{{ item }}"
         state: present
       when: ansible_distribution == "Amazon"
+      register: pkg_result
+      loop:
+      - nginx
+      - git
+      - curl
 
     - name: Start nginx
       service:
