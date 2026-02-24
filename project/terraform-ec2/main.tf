@@ -108,7 +108,7 @@ resource "aws_eip" "ep"{
 resource "aws_nat_gateway" "nat"{
     allocation_id = aws_eip.ep.id
     subnet_id = aws_subnet.public.id
-    depends_on = aws_internet_gateway.igw
+    depends_on = [aws_internet_gateway.igw]
 }
 
 resource "aws_route_table" "rt1"{
