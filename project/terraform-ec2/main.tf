@@ -22,9 +22,17 @@ resource "aws_security_group" "allow_my_ip"{
         from_port = 22
         to_port = 22
         protocol = "tcp"
-        cidr_block = 3.87.88.135
         ipv6_cidr_blocks = ["::/0"]
     }
+}
+
+resource "aws_security_group_rule" "sgrule"{
+    type = ingress
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["3.87.88.135"]
+    aws_security_group_id = aws_security_group.allow_my_ip.id
 }
 
 
@@ -56,7 +64,7 @@ resource "aws_security_group" "allow_bastion"{
     }
 }
 
-resource "aws_security_group_rule" "sgrule"{
+resource "aws_security_group_rule" "sgrule1"{
     type = ingress
     from_port = 22
     to_port = 22
