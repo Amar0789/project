@@ -8,8 +8,8 @@
       package:
         name: "{{ item }}"
         state: present
-      when: ansible_distribution == "Amazon"
       register: pkg_result
+      when: ansible_distribution == "Amazon"
       loop:
       - nginx
       - git
