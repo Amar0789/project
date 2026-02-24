@@ -27,7 +27,7 @@ resource "aws_security_group" "allow_my_ip"{
 }
 
 resource "aws_security_group_rule" "sgrule"{
-    type = ingress
+    type = "ingress"
     from_port = 22
     to_port = 22
     protocol = "tcp"
