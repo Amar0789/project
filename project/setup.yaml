@@ -1,24 +1,31 @@
-- name: To enable nginx conditionally
+- name: Enable nginx conditionally
   hosts: web
   become: yes
-  tasks: 
-  - name: To install nginx
-    package:
-     name: nginx
-     state: present
-    when: ansible_facts['distribution'] == 'Amazon Linux'
-  - name: To starte nginx
-    service:
-     name: nginx
-     state: started
-  - name: To change config vars_files
-    copy:
-     content: "hello"
-     dest: "/home/ece-user"
-    notify: restart nginx
+
+  tasks:
+
+    - name: Install nginx
+      package:
+        name: nginx
+        state: present
+      when: ansible_distribution == "Amazon"
+
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started
+      when: ansible_distribution == "Amazon"
+
+    - name: Change config
+      copy:
+        content: "hello"
+        dest: "/etc/nginx/test.conf"
+      notify: restart nginx
+      when: ansible_distribution == "Amazon"
+
   handlers:
-  - name: restart nginx
-    service:
-     name: nginx
-     state: started
-     enabled: yes
+
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
