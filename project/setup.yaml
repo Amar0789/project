@@ -6,6 +6,7 @@
     package:
      name: nginx
      state: present
+    when: ansible_facts['distribution'] == 'Amazon Linux'
   - name: To starte nginx
     service:
      name: nginx
