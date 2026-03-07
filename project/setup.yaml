@@ -3,4 +3,6 @@
   hosts: web
   tasks:
   - name:
-    ping:
+    pacakage:
+     name: nginx
+     state: present
