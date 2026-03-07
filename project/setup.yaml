@@ -1,35 +1,6 @@
-- name: Enable nginx conditionally
-  hosts: web
+- name: To install nginx
   become: yes
-
+  hosts: web
   tasks:
-
-    - name: Install multiple packages
-      package:
-        name: "{{ item }}"
-        state: present
-      register: pkg_result
-      when: ansible_distribution == "Amazon"
-      loop:
-      - nginx
-      - git
-
-    - name: Start nginx
-      service:
-        name: nginx
-        state: started
-      when: ansible_distribution == "Amazon"
-
-    - name: Change config
-      copy:
-        content: "hello"
-        dest: "/etc/nginx/test.conf"
-      notify: restart nginx
-      when: ansible_distribution == "Amazon"
-
-  handlers:
-
-    - name: restart nginx
-      service:
-        name: nginx
-        state: restarted
+  - name:
+    ping:
