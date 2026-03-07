@@ -3,6 +3,6 @@
   hosts: web
   tasks:
   - name:
-    pacakage:
+    package:
      name: nginx
      state: present
