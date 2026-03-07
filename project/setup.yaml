@@ -1,8 +1,9 @@
 - name: To install nginx
   become: yes
   hosts: web
+  vars:
+   name: Amar
   tasks:
   - name:
-    package:
-     name: nginx
-     state: present
+    debug:
+     msg: "{{name}}"
