@@ -8,3 +8,18 @@ spec:
   containers:
   - name: nginx
     image: nginx
+  - name: nginx1
+    image: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: new-Service
+spec:
+  selector:
+    env:dev
+  ports:
+  - name: new-Service
+    protocol: tcp
+    port: 80
+    targetPort: 80
