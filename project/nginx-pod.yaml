@@ -20,6 +20,6 @@ spec:
     env: dev
   ports:
   - name: new-Service
-    protocol: "tcp"
+    protocol: "TCP"
     port: 80
     targetPort: 80
