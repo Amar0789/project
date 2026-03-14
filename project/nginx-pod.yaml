@@ -8,8 +8,6 @@ spec:
   containers:
   - name: nginx
     image: nginx
-  - name: nginx1
-    image: nginx
 ---
 apiVersion: v1
 kind: Service
