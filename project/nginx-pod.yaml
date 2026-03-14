@@ -16,6 +16,7 @@ kind: Service
 metadata:
   name: newservice
 spec:
+  type: LoadBalancer
   selector:
     env: dev
   ports:
