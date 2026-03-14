@@ -19,7 +19,7 @@ spec:
   selector:
     env: dev
   ports:
-  - name: new-Service
+  - name: new-service
     protocol: "TCP"
     port: 80
     targetPort: 80
