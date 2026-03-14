@@ -17,7 +17,7 @@ metadata:
   name: new-Service
 spec:
   selector:
-    env:dev
+    env: dev
   ports:
   - name: new-Service
     protocol: tcp
