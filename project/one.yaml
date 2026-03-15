@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
   name: sets 
 spec:
@@ -15,4 +15,4 @@ spec:
   spec:
     containers:
     - name: nginx
-      image: nginx
+      image: ubuntu
