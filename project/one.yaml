@@ -4,12 +4,12 @@ metadata:
   name: nginx
 spec:
   containers:
-  - name: nginx
-    image: nginx
-    resources:
-      requests:
-       cpu: 120M
-       memory: 120mi
-      limits:
-       cpu: 120M
-       memory: 120mi
+    - name: nginx
+      image: nginx
+      resources:
+        requests:
+        cpu: 120M
+        memory: 120mi
+        limits:
+        cpu: 120M
+        memory: 120mi
