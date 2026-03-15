@@ -8,8 +8,6 @@ spec:
   containers:
   - name: nginx
     image: nginx
-  - name: one
-    image: nginx
 
 ---
 apiVersion: v1
