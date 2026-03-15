@@ -15,7 +15,7 @@ kind: Service
 metadata:
   name: svc 
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     env: dev
   ports:
