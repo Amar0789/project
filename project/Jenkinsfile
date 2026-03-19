@@ -6,17 +6,17 @@ pipeline{
                 echo "This is from stage one"
             }
         }
-        stage('one'){
+        stage('Two'){
             steps{
                 echo "This is from stage Two"
             }
         }
-        stage('one'){
+        stage('Three'){
             steps{
                 echo "This is from stage Three"
             }
         }
-        stage('one'){
+        stage('Four'){
             steps{
                 echo "This is from stage Four"
             }
