@@ -5,13 +5,10 @@ pipeline {
         ENV_TYPE = 'prod'
     }
 
-    tools{
-        jdk 'JDK-17'
-    }
 
     stages {
         stage('parallel'){
-            perallel{
+            parallel{
                 stage('one'){
                     steps{
                         echo "I am from parallel One"
