@@ -18,6 +18,9 @@ pipeline{
             when{
                 environment name: 'env_type' , value: 'prod'
             }
+            steps{
+                echo "It will only be printed when environment is prod"
+            }
         }
     }
 }
