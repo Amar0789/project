@@ -1,5 +1,8 @@
 pipeline{
     agent none
+    environment{
+        env = 'prod'
+    }
     stages{
         stage('one'){
             steps{
@@ -7,6 +10,9 @@ pipeline{
             }
         }
         stage('Two'){
+            when {
+                env.env is 'prod'
+            }
             steps{
                 echo "This is from stage Two"
             }
