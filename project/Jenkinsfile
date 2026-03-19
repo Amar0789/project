@@ -9,12 +9,6 @@ pipeline{
                 echo "I am from stage one"
             }
         }
-        stage('two'){
-            steps{
-                echo "I am from stage 2"
-                input "Do you want to continue"
-            }
-        }
         stage('Approval'){
             steps{
                 input{
