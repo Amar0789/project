@@ -11,7 +11,7 @@ pipeline{
         }
         stage('Two'){
             when {
-                environment name : env_type , value: 'prod'
+                environment name : env_type , value : 'prod'
             }
             steps{
                 echo "This is from stage Two"
