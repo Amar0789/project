@@ -23,7 +23,7 @@ pipeline{
                 }
             }
         }
-}
+
         stage('Three'){
             when{
                 environment name: 'env_type' , value: 'prod'
