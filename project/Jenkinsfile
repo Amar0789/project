@@ -3,23 +3,32 @@ pipeline{
     stages{
         stage('one'){
             steps{
-                echo "This is from step one"
+                echo "This is from stage one"
             }
         }
-        stage('Two'){
+        stage('one'){
             steps{
-                echo "This is from step two"
+                echo "This is from stage Two"
             }
         }
-        stage('Three'){
+        stage('one'){
             steps{
-                echo "This is just a revision"
+                echo "This is from stage Three"
             }
         }
+        stage('one'){
+            steps{
+                echo "This is from stage Four"
+            }
+        }
+
     }
     post {
         always{
-            echo "This runs everytime you run any script"
+            echo "This run always"
+        }
+        success{
+            echo "This only runs when pipeline succeeded"
         }
     }
 }
