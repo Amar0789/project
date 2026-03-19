@@ -6,7 +6,7 @@ pipeline {
     }
 
     tools{
-        java 'jdk-17'
+        java 'java 26'
     }
 
     stages {
