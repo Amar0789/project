@@ -15,6 +15,14 @@ pipeline{
                 input "Do you want to continue"
             }
         }
+        stage('Approval') {
+            steps {
+              input {
+                message "Approve deployment to PROD?"
+                ok "Yes, Deploy"
+        }
+    }
+}
         stage('Three'){
             when{
                 environment name: 'env_type' , value: 'prod'
