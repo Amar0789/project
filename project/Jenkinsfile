@@ -6,35 +6,18 @@ pipeline{
     stages{
         stage('one'){
             steps{
-                echo "This is from stage one"
+                echo "I am from stage one"
             }
         }
-        stage('Two'){
-            when {
-                environment name : 'env_type' , value : 'prod'
-            }
+        stage('two'){
             steps{
-                echo "This is from stage Two"
+                echo "I am from stage 2"
             }
         }
         stage('Three'){
-            steps{
-                echo "This is from stage Three"
+            when{
+                environment name = env_type , value = 'prod'
             }
-        }
-        stage('Four'){
-            steps{
-                echo "This is from stage Four"
-            }
-        }
-
-    }
-    post {
-        always{
-            echo "This run always"
-        }
-        success{
-            echo "This only runs when pipeline succeeded"
         }
     }
 }
