@@ -5,6 +5,10 @@ pipeline {
         ENV_TYPE = 'prod'
     }
 
+    tools{
+        java 'jdk-17'
+    }
+
     stages {
 
         stage('Build') {
