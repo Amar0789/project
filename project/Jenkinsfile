@@ -16,7 +16,7 @@ pipeline {
         stage('Approval') {
             agent none
             steps {
-                input(message: "Do you want to approve this build?")
+                input message: "Do you want to approve this build?"
                     
             }
         }
