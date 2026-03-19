@@ -21,5 +21,15 @@ pipeline {
                 }
             }
         }
+        stage('script'){
+            steps{
+                script{
+                    def x = 5
+                    if (x == 5) {
+                        echo "The value of x is 5"
+                    }
+                }
+            }
+        }
     }
 }
