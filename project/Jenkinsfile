@@ -10,27 +10,18 @@ pipeline {
     }
 
     stages {
-
-        stage('Build') {
-            steps {
-                echo "I am from stage one"
-            }
-        }
-
-        stage('Approval') {
-            agent none
-            steps {
-                input message: "Do you want to approve this build?"
-                    
-            }
-        }
-
-        stage('Deploy') {
-            when {
-                environment name: 'ENV_TYPE', value: 'prod'
-            }
-            steps {
-                echo "Deploying to production"
+        stage('parallel'){
+            perallel{
+                stage('one'){
+                    steps{
+                        echo "I am from parallel One"
+                    }
+                }
+                stage('two'){
+                    steps{
+                        echo "I am from parallel Two"
+                    }
+                }
             }
         }
     }
