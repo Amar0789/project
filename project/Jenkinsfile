@@ -15,13 +15,14 @@ pipeline{
                 input "Do you want to continue"
             }
         }
-        stage('Approval') {
-            steps {
-              input {
-                message "Approve deployment to PROD?"
-                ok "Yes, Deploy"
+        stage('Approval'){
+            steps{
+                input{
+                    message "Do you want to approve this build"
+                    ok "yes, Deploy"
+                }
+            }
         }
-    }
 }
         stage('Three'){
             when{
