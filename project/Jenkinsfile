@@ -1,30 +1,34 @@
-pipeline{
+pipeline {
     agent any
-    environment{
-        env_type = 'prod'
+
+    environment {
+        ENV_TYPE = 'prod'
     }
-    stages{
-        stage('one'){
-            steps{
+
+    stages {
+
+        stage('Build') {
+            steps {
                 echo "I am from stage one"
             }
         }
-        stage('Approval'){
+
+        stage('Approval') {
             agent none
-            steps{
-                input{
-                    message "Do you want to approve this build"
-                    ok "yes, Deploy"
+            steps {
+                input {
+                    message "Do you want to approve this build?"
+                    ok "Yes, Deploy"
                 }
             }
         }
 
-        stage('Three'){
-            when{
-                environment name: 'env_type' , value: 'prod'
+        stage('Deploy') {
+            when {
+                environment name: 'ENV_TYPE', value: 'prod'
             }
-            steps{
-                echo "It will only be printed when environment is prod"
+            steps {
+                echo "Deploying to production"
             }
         }
     }
