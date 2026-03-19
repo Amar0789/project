@@ -1,18 +1,7 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: sets 
-spec:
- replicas: 3
- selector:
-  matchLabels:
-    app: dev
- template:
-  metadata:
-    name: nginx
-    labels:
-     app: dev
-  spec:
-    containers:
-    - name: nginx
-      image: ubuntu
+apiVersion: v1
+kind: StorageClass
+metadata: 
+  name: storageVolume
+provisioner: ebs.csi.aws.com 
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer

@@ -1,0 +1,25 @@
+pipeline{
+    agent none
+    stages{
+        stage('one'){
+            steps{
+                echo "This is from step one"
+            }
+        }
+        stage('Two'){
+            steps{
+                echo "This is from step two"
+            }
+        }
+        stage('Three'){
+            steps{
+                echo "This is just a revision"
+            }
+        }
+    }
+    post {
+        always{
+            echo "This runs everytime you run any script"
+        }
+    }
+}
