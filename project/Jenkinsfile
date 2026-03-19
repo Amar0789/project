@@ -11,7 +11,7 @@ pipeline{
         }
         stage('Two'){
             when {
-                env.env is 'prod'
+                env.env is 'dev'
             }
             steps{
                 echo "This is from stage Two"
